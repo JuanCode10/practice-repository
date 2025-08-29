@@ -1,0 +1,18 @@
+name: Output Event Details
+on: [issues, workflow_dispatch]
+jobs:
+    information-output:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Output issue details
+              run: |
+                if [ -n "${{ github.event.issue.number }}" ]; then
+                    echo "Issue Number: ${{ github.event.issue.number }}"
+                    echo "Title: ${{ github.event.issue.title }}"
+                    echo "Body: ${{ github.event.issue.body }}"
+                    echo "Author: ${{ github.event.issue.user.login }}"
+                    echo "State: ${{ github.event.issue.state }}"
+                else
+                    echo "No issue context available for this trigger."
+                fi
+            
